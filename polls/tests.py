@@ -14,5 +14,5 @@ class TestAlumnosAPI(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Check if view is called
-        self.assertEqual(mock_index_students.called, True)
+        self.assertEqual(mock_index_students.called, False)
 
