@@ -22,7 +22,7 @@ pipeline {
 	                docker container stop $containers
                 fi
                 ''' 
-                sh 'docker run -d -p 3000:3000 django-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER}'
+                sh 'docker run -d -p 3000:8000 django-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER}'
             }
         }
     }
