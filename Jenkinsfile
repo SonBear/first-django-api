@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'pip3 install django'
-                sh 'docker build -t django-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER} .'
             }
         }
         stage('Test') {
@@ -15,6 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh 'docker build -t django-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER} .'
                 sh ''' 
                 containers=$(docker ps | grep django* | awk '{print $1}')
                 if [ ! -z $containers ];
