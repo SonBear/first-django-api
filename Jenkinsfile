@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
-            steps {
-                sh 'echo "heello"'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'docker build -t django-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER} .'
@@ -14,7 +9,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './manage.py test' 
+                sh 'python3 ./manage.py test' 
             }
         }
         stage('Deploy') {
