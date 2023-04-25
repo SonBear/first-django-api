@@ -4,12 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'pip3 install django'
                 sh 'docker build -t django-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER} .'
             }
         }
         stage('Test') {
             steps {
-                sh 'python3 ./manage.py test' 
+                sh 'python3 manage.py test' 
             }
         }
         stage('Deploy') {
