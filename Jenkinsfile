@@ -16,13 +16,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh ''' 
-                containers=$(docker ps | grep api* | awk '{print $1}')
+                containers=$(docker ps | grep django* | awk '{print $1}')
                 if [ ! -z $containers ];
                 then
 	                docker container stop $containers
                 fi
                 ''' 
-                sh 'docker run -d -p 3000:3000 api-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER}'
+                sh 'docker run -d -p 3000:3000 django-${GIT_BRANCH}-1.0.0:${BUILD_NUMBER}'
             }
         }
     }
